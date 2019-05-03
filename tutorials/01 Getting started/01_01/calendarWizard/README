@@ -1,0 +1,640 @@
+Adobe InDesign Calendar Wizard  
+version 4.1.1
+by Scott Selberg (saselberg@gmail.com)
+Last Update: May 24, 2014
+Copyright 2009 Scott Selberg
+
+The script is a gift to the InDesign user community.  It is free to 
+use and modify; however, it is not permissible to sell or 
+redistribute any portion of the script without express written 
+permission from the author.  
+
+*****************************************************************************************
+*****************************************************************************************
+**                                                                                     **
+** If you find this script useful, please consider donating to support it's developer, ** 
+** maintenance, and upgrades.  Donations are accepted through paypal at the following  **
+** url: http://calendarwizard.sourceforge.net                                          **
+**                                                                                     **
+*****************************************************************************************
+*****************************************************************************************
+
+======================================================= 
+Thank You's
+======================================================= 
+Thanks to Jan Suhr, Robert Cornelius, and Steve Nichols.  
+             The author and subsequent developers of Calendar_Maker.js 
+             from which I leveraged a number of ideas for the first 
+             generation of this tool 
+Thanks to Gary Spedding for the first round of user feedback
+Thanks to Theo Duijkers for the Dutch weeks and months
+Thanks to Ulrik Södergren for Swedish language   
+Thanks to David Blatner for the table and cell styles suggestion, 
+             the CMYK colors suggestion, and for reading the currently 
+             selected text frame for holidays suggestion.
+Thanks to Barbara L for noticing the order of weekdays in French, 
+             Spanish, and Dutch were wrong.
+Thanks to Ott Rammo for the Estonian language update
+Thanks to Giancarlo Gamberini for the Italian language update
+Thanks to Robert Siemi?ski for the Polish language update
+Thanks to Szabó Szabolcs for the Hungarian language update
+Thanks to Tim Fennell for finding a bug with dates in split cells
+Thanks to Tim Fennell for finding a bug in the year of the mini-calendar.
+Thanks to Magnus Nyland for Norwegian language update.
+Thanks to Ole Jessien for Danish language update
+Thanks to Robb Lutton for finding the CMYK bug
+Thanks to Daniel Pinto for the Portuguese language update
+Thanks to Themis Chapsis for the Greek language update
+Thanks to Yehuda Shiran, Ph.D. for Work Week algorithm
+Thanks to Xavier M. Jubier (http://xjubier.free.fr/en/index_en.html)
+             for the phase of the moon calculation
+Thanks to Ryan Gardner for the idea of the picture frame layer
+Thanks to Radu Diaconu for the Romanian language update.
+Thanks to Glenn Heckard for finding bugs with only Highlight Sundays selected,
+      with Custom File selected, and not being able to generate a new page with 
+      holidays from frame selected and the cal_date alignment paragraph override in CS4
+Thanks to Ott Rammo for finding several bugs in CS1
+Thanks to Daniel Pinto for Portugal's holidays
+Thanks to Ott Rammo for the idea of a highlight holidays feature
+      and the Estonian holiday pack.
+Thanks to Robb Lutton for pointing out a few spelling mistakes in the US holidays
+Thanks to Alejandro Martin Parra for finding the spanish language bugs
+Thanks to Toni Copistero for finding the bug with monday start day, 1st of month is Sunday, and highlight Sundays
+Thanks to Toni Copistero for finding the bug with monday start day, 1st of month is Sunday, and include non-month selected
+   and the Catalonian language update
+Thanks to Dave Saunders for figuring out how to avoid the UserInteractionLevel trap which may have been set by a previous script.
+Thanks to Manuela for finding the CS bug concerning UserInteractionLevels
+Thanks to Tehilah Leonard for finding the ":" holiday parsing bug
+Thanks to Salvador Subarroca for correcting the catalan language and providing the Basque language
+Thanks to Ott Rammo for the updated Estonian holiday pack.
+Thanks to Gregory Dziedzic for the Turkish language update
+Thanks to Jennie Zell for finding a bug with the re-align script and suggesting the custom page size
+Thanks to Stein Egeberg for help with the documentation, usability, and finding some bugs with the cell styles
+Thanks to Jukka Kemppainen for the Finnish Translation
+Thanks to George Shustov for the Russian Translation
+Thanks to Andrej Damjanovic for the Slovenian Translation
+Thanks to Tobias Kraft for the German Holidays
+Thanks to Joan Grytness for finding the bug where split cells had no "splitcell" style
+Thanks to ¿¿¿ for the Chinese translation
+Thanks to Eric Lee for detecting that the custom holiday file selection only picked up one file rather than all
+Thanks to Jeffrey Trimble for suggesting a Julian Date Layer (Day of Year)
+Thanks to George Buxton for the New Zealand Holidays
+Thanks to Gabor Szebenyi for finding the bug with Highlight Sundays and not-mini calendars where the first sunday was not being highlighted
+Thanks to Jozef Ramen, Frantisek Lukacovic, and empmejl for the Slovak language translation
+Thanks for Hlynuf Helgason fo the icelandic translation
+Thanks to Karolis Jurkevicius for the lithuanian translation
+Thanks to Gyorgy zombori for finding a resizing bug
+Thanks to Kajza for the Croatian translation
+Thanks to Gavin Anderson for proofing the README
+Thanks to Ken Keyes for the Azerbaijan translation
+Thanks to Ron Samson for finding a bug with CS3/CS4
+Thanks to Douglas Riley for the Austrailian Holidays
+Thanks to Ivan Stoyanov for the Bulgarian translation
+Thanks to Sandra Fossalovara for the Austrian holidays
+Thanks to Sadek for the Arabic
+Thanks to Godehard Hannig for correcting the mid day names to two characters
+Thanks to Josip Zvijerac for the Bosnian, Serbian Latin and Serbian Cyrillic translations
+Thanks to Hakan Balci for the Turkish translation fixes
+Thanks to Kristaps Zvaigznite for the Latvian translation
+Thanks to Jennyfur for finding the issue with Greek months
+Thanks to Ibrahima Sarr for the Fulah language update
+Thanks to Piotr Grajnert for the updated Polish Holidays
+Added the ability to highlight holiday cells with no holiday text
+Thamks to Andrej Damjanovic for the Slovenia holidays for 2016-2020 
+Added the A, B, C and D holiday cell styles
+
+======================================================= 
+I. Introduction
+======================================================= 
+Thanks for taking the time to try this script and especially to read the 
+help files.  I hope it will be of value to you.  If you come across any 
+bugs or have ideas for feature enhancements please email me at 
+saselberg@gmail.com
+
+For the most part the functionality of the script is quite obvious and the 
+documentation is here more for completeness rather than necessity.  
+However, I believe the documentation provides significant value in two 
+specific areas: the multi-layer feature and the holidays feature.  I would 
+therefore recommend reading them.
+
+======================================================= 
+Online Tutorials/Examples
+
+I have a number of tutorials and some better documentation
+at http://calendarWizard.sourceforge.net
+======================================================= 
+
+======================================================= 
+II. Outline
+======================================================= 
+I. Introduction
+II. Outline
+III. Version Compatibility
+IV. Installation
+V. Features
+   A. Multi-Month Calendar Generation
+   B. Layout Options
+   C. Calendar Options
+      i. Multi-language
+      ii. Start on Sunday or Monday
+      iii. Date Rows
+      iv. Mini-Calendars
+      v. Add Work Week
+      vi. Add Non-Month Days
+      vii. Highlight Sundays
+   D. Calendar Decoration
+      i. Use of Styles
+      ii. Holiday A, B, C, and D Styles
+      iii. Colorspace
+   E. Multi-Layer Calendar
+      i. Layers
+         a. Use Calendar Layer
+         b. Add Holidays Layer
+         c. Add Picture Layer
+         d. Add Moon Phases
+         e. Add Text Layer
+      ii. fitCalendarToFrame.js
+      iii. realignCalendarTables.js
+   F. Holidays
+      i. Holiday List Format
+      ii. Selecting a Holiday List
+      iii. Loading from the Current Frame
+      iv. Loading from a Custom File
+      v. Loading from a Pre-Defined Files
+VI. Behavior Rules
+VII. ToDo
+   A. Templates
+VIII. Bugs
+IX. QA Plan
+X. History
+   A. Version 1.0
+   B. Version 2.0
+   C. Version 3.0
+X. Notes
+
+======================================================= 
+III. Version Compatibility
+======================================================= 
+In the table below, I've listed the latest version of the script which is 
+known to work. 
+
+                 |   PC   |  Mac   |
+    --------------------------------
+    InDesign 1.0 |        |        |
+    --------------------------------
+    InDesign 1.5 |        |        |
+    --------------------------------
+    InDesign 2.0 |        |        |
+    --------------------------------
+    InDesign CS  | 3.3.8  | 3.3.8  |
+    --------------------------------
+    InDesign CS2 | 3.6.18 | 3.6.18 |
+    --------------------------------
+    InDesign CS3 | 3.6.18 | 3.6.18 |
+    --------------------------------
+    InDesign CS4 | 3.3.8  | 3.3.8  |
+    --------------------------------
+    InDesign CS5 | 3.6.18 | 3.6.18 |
+    --------------------------------
+
+======================================================= 
+IV. Installation
+======================================================= 
+Relocate the following items into a sub-directory of
+the Adobe InDesign Scripts.  It is recommended to install 
+them into a sub-directory called "calendarWizard":
+   
+   calendarWizard.js
+   holidays
+   realignCalendarTables.js
+   fitCalendarToFrame.js
+
+In CS2, it's usually something like "C:\Program Files\Adobe\Adobe Creative 
+Suite 2\Adobe InDesign CS2\Presets\Scripts" 
+
+In CS and CS2, I've been unable to detect where the script 
+has been installed to; however I can locate the directory containing Adobe 
+InDesign itself.  To that end the script will expect the "holidays" folder 
+to be in "Presets/Scripts/calendarWizard".  
+
+In CS3 and above, there are two options.  To install the script for all users of the 
+computer, put the scripts in "C:\Program Files\Adobe\Adobe Creative Suite 
+3\Adobe InDesign CS3\Scripts\Scripts Panel".  Or to install the script 
+only for a particular user, put them in "C:\Documents and 
+Settings\<username>\Application Data\Adobe\InDesign\Version 
+5.0\Scripts\Scripts Panel".  By default, the "Application Data" directory 
+is a hidden directory.  In the Windows folder options settings you can 
+tell windows to show hidden directories.  
+
+Once the files have been copied to this directory, they will show up in 
+InDesign's scripts palette.  
+
+A note on upgrading:
+Before upgrading to a new version of the script, please
+remove any old versions.  They can be deleted or relocated
+to a directory outside of the InDesign scripts folder. If 
+InDesign finds two copies, it will link to the older one.
+
+======================================================= 
+V. Features
+======================================================= 
+
+A. Multi-Month Calendar Generation
+-------------------------------------------------------
+The script is able to generate a set of calendars from a start month up to 
+and including the end month.  The range of years in the drop down box are 
+determined by the current year minus three to the current year plus ten.  
+
+B. Layout Options
+-------------------------------------------------------
+The calendars may be placed in a number of ways. 
+The script will try and generate the calendar in a predefined text frame 
+if a text frame is selected or the cursor is in a text frame and the page 
+type is set to either 'AUTO' or 'Current Text Frame'.  When generating 
+into the current frame, a calendar for only one month may be produced.  
+
+If a text frame is not selected, the "Auto" page type will create a new 
+document and add a page in either landscape or portrait mode depending 
+upon the setting in the dialog box.  When the script generates a new page 
+or pages it can place 1, 2, 4, 6, 8, 9, 10, or 12 calendars per page in a 
+grid layout.  
+
+If the user selects "Current Document" as the page type, the script
+will use the current document adding pages if necessary.  This is particularly
+useful in conjunction with the custom calendar placement/sizing to get
+multiple calendars on the same page.
+
+A custom page size may be selected by entering in the desired height 
+and width (numbers or a decimal only).  By specifying both an height and
+a width, these fields become active and will override the standard 
+page selection fields.  
+
+Optionally, the value of the page  margins can be specified. Note - 
+the margin field works independently of the height and width and can
+also be used when a standard page size is selected.  It was included
+with the custom height and width to make the dialog box look pretty.
+
+There are a set of four text entry boxes for specifying the size and
+position of the calendar.  The text entry boxes are graphically presented
+for specifying the top and bottom, left and right corners of the calendar.
+The script will ignore these values unless all four have numeric (and
+numeric only values)
+
+C. Calendar Options
+-------------------------------------------------------
+When generating the calendar, there are a few useful options.  
+
+i.  Multi-Language
+At the time of this writing, the script supports 16 languages.  To add a 
+new language, the script needs to be modified in two places.  Towards the 
+top is a list of langageOptions.  (Do a word search for 
+"settings.languageOptions".) Add the english name for the new language 
+into the list in alphabetical order.  The second modification is made in 
+the "selectLangauge" subroutine at the bottom of the script.  To add 
+another language copy and paste an else/if block and modify it as needed.  
+The English name of the language in the first part modification to match 
+the name of the language in the second modification.  
+
+Note, changing the language only changes the month and day names, it 
+will not alter the language of the holidays being printed.  For that a
+multi-language holiday pack will be needed.
+
+ii. Start on Sunday or Monday
+The "Start on Sunday or Monday" option controls which day of the week will 
+be the first column.  If Monday is selected, Sunday will become the last 
+column.  
+
+iii.  Date Rows 
+The Date Rows selection is used to fix the number of rows in each month.  
+Some months may have six weeks (six rows) while others have only 5.  In a 
+non-leap year February may end up with only 4 weeks.  If "5" is selected 
+and there are 6 weeks, the last row will have diagonal lines separating 
+the second to last week and the last week.  If "6" is selected and there 
+are only 5 weeks, an empty row will be generated.  The "Auto" setting will 
+allow the script to make as many rows as necessary (4, 5, or 6) to 
+accommodate the number of days in the month.  
+
+When dealing with features that put items into the date cells (such as 
+holidays or the moon phase) you may not restrict the calendar to 5 rows.  
+I couldn't think of a programatic solution to deal with placing items into 
+the cells that belong to two dates, so that case is just not allowed.
+
+iv.  Mini-Calendars
+When included, small calendars of the preceding and following month are 
+included to the left and right of the month name.  This option can really 
+slow down the script.  
+
+The mini-calendars are hard-coded to be 0.75 inches square.  This is the 
+smallest size I could make.  In the script the variable called 
+miniCalendarSize sets the size.  The first two numbers determine the upper 
+left corner, presently ("2", "2").  The last two set the bottom right 
+corner ("2.75", "2.75").  To make the calendar bigger, enlarge the values 
+of the last two numbers.  Note, the table is moved after it is built, so 
+all that matters is the relative spacing between the two points.  
+
+When making multiple tables per page, the mini-calendars don't really make 
+much sense and they make the formatting look really ugly.  I decided that 
+at four calendars per page, somebody might find it useful, but above that 
+no.  So, I put a lockout which prevents the mini calendar from being 
+activated at greater than four calendars per page.  
+
+v.  Add Work Week
+If the "Include Work Weeks" checkbox is selected, the script will add a 
+column to the left with a number indicating the week of the year 
+
+vi. Add Non-Month Days
+If the "Include Non-Month Days" checkbox is selected, the days of the 
+preceding and following month that are in the first or last weeks of the 
+month will be included.  
+
+vii. Highlight Sundays
+If selected, the column of sundays will be given a distinct cell and 
+paragraph style.  (the default color is red).  If "Highlight Sundays" and 
+"Include Non-Month Days" are both selected, the non-month sundays will 
+also be given a distinct cell and paragraph style.  
+
+viii. Highlight Holidays
+If selected, the dates with holidays will be given a distinct cell and 
+paragraph style.  (the default color is red).  If "Highlight Sundays"
+is selected and the holiday is a sunday, the holidayDate style will be
+applied.  
+
+D. Calendar Decoration
+-------------------------------------------------------
+i. Use of Styles
+The script makes extensive use of color swatches, paragraph and cell 
+styles to make the final result easy to customize.
+
+Below is a map of the styles.  With a few exceptions called out below, 
+the styles exist as both paragraph and cell styles.  Note the cell
+styles will use the identically named paragraph style. 
+
+cal_base --
+          |
+          -- cal_title (used for the name of the month)
+          -- cal_day   (used for the name of the weekday)
+          -- cal_date --  (used for the date of the week)
+          |            |
+          |            -- cal_date_splitCellSecondLine (used for the lower value when dividing a cell into two days)
+          -- cal_text  (used for text in the cells of the text layer; see cal_textText for cell style)
+          -- cal_sunday (used for the date of the week in sunday cells)
+          -- cal_holidayDate (used for the date of the week in holiday cells)
+          -- cal_nonMonthSunday (used for the date of the week when a sunday not of the current month)
+          -- cal_nonMonthDay (used for days not in the current month)
+          -- cal_workWeek (used for the cells that identify the work week)
+          -- cal_holiday -- (used for cells in the holiday layer; see cal_holidayText for cell style)
+          |               |
+          |               -- cal_holidayA (The holiday 'A' style as selected by the user; no corresponding cell style)
+          |               -- cal_holidayB (The holiday 'B' style as selected by the user; no corresponding cell style)
+          |               -- cal_holidayC (The holiday 'C' style as selected by the user; no corresponding cell style)
+          |               -- cal_holidayD (The holiday 'D' style as selected by the user; no corresponding cell style)
+          -- cal_moon (used for the cells in the moon layer; see cal_moonText for the cell style)
+          -- cal_pictures (used for the cells in the picture layer; see cal_picturesText for cell style)
+          -- cal_leftMiniCalendar (used to control the cell with the left mini-calendar)
+          -- cal_rightMiniCalendar (used to control the cell with the right mini-calendar)
+          -- calMini_base -- (base style used in the mini-calendars)
+                           |
+                           -- calMini_title (see cal_title)
+                           -- calMini_day (see cal_day)
+                           -- calMini_text (see cal_text)
+                           -- calMini_date -- (see cal_date)
+                           |                |
+                           |                -- calMini_date_splitCellSecondLine (see cal_date_splitCellSecondLine)
+                           -- calMini_sunday (see cal_sunday)
+                           -- calMini_holidayDate (see cal_holidayDate)
+                           -- calMini_nonMonthSunday (see cal_nonMonthSunday)
+                           -- calMini_nonMonthDay (see cal_nonMonthDay)
+
+Additional Cell Styles (i.e. ones that don't have a paragraphs style complement)
+
+cal_base --
+          |
+          -- cal_title -- (used for the top row)
+          |             |
+          |             -- cal_holidayTitle
+          |             -- cal_moonTitle
+          |             -- cal_picturesTitle
+          |             -- cal_textTitle
+          -- cal_text -- (used for all other rows)
+                       |
+                       -- cal_holidayText
+                       -- cal_moonText
+                       -- cal_picturesText
+                       -- cal_textText
+
+Table Styles
+        cal_date
+        cal_holiday
+        cal_text
+        cal_moons
+        cal_pictures
+
+iii.  Holiday A, B, C, and D Styles 
+When generating the calendar, there are four checkboxes next to each of 
+the available holiday sets.  If a box is checked, the holidays defined by 
+that list will be placed in the cell with that style applied.  The desire 
+is to highlight different types of holidays (for example, Christian holidays 
+vs.  birthdays).  If two or more checkboxes are selected, the first 
+alphabetically will be used.  (i.e., if A & B are selected, A will be 
+used).  
+
+ii. Colorspace
+The script can generate color swatches in RGB, CMYK, or LAB color space.  
+This is controlled by a drop down menu in the calendar generation GUI.  
+
+iii. Style Sets
+When using the custom calendar placement, it is sometimes desirable
+to place more than one calendar on a page and have different styles for
+each of the calendars.  There is therefore a dropdown menu in the custom
+calendar size section for the style set.  This will add the number as a
+suffix to each of the styles generated by that run of the script.  This 
+allows the generation of multiple calendars each with a distinct set
+of styles to control it's appearance.
+
+E. Multi-Layer Calendar
+-------------------------------------------------------
+When I started to develop and use this script, I found it a pain to create 
+the calendar, type in one cell, tab to the next and promptly delete the 
+date by typing over it.  My solution was to generate the calendar as 
+multiple super-imposed tables putting each on their own layer.  The 
+calendar currently supports up to 5 layers: calDates, calHolidays, 
+calPictures, calMoons, and calText.  By default, only the text layer is 
+selected.  This will place the table with the calendar dates on the 
+current layer and a second super-imposed table on a new layer called 
+calText.  
+
+In general the multi-layer scheme works really well; however, there is a 
+complication.  If you want to resize any of the cells in the calendar or 
+the calendar itself, all three associated tables need identical 
+modifications.  This is rather painful to do manually.  The solution to these
+problems are fitCalendarToFrame.js and realignCalendarTables.js.
+
+i. Layers
+a. Use Calendar Layer
+If the "Use Calendar Layer" is selected, the table with the dates will be 
+placed on a new layer called calDates rather than the current layer.  
+
+b. Add Holidays Layer
+A superimposed table will be created with holiday cell and paragraphs styles
+applied and placed in the calHolidays layers.  Any selected holidays will be added
+entered into the appropriate cell of the holidays table.  The holidays table and
+layer will be automatically generated if any of the holiday sets are selected.
+
+c. Add Picture Layer
+A superimposed table will be created with picture cell and paragraphs 
+styles applied and placed in the calPictures layers.  Each cell of the 
+table contains an empty rectangular frame into which a picture may be 
+placed.  
+
+d. Add Moon Phases
+A superimposed table will be created with moon cell and paragraphs 
+styles applied and placed in the calMoons layers.  The new, full, half
+waxing, and half waning moons will be placed in the appropriate cell.
+The full moon will be a solid circle, the new moon a circle with no fill.
+
+I don't completely trust the algorithm used to compute the phase of the 
+moon, so use with caution.
+
+e. Add Text Layer
+A superimposed table will be created with text cell and paragraphs 
+styles applied and placed in the calText layers.  It should be the 
+top layer and provides a place to enter any text desired.
+
+ii. fitCalendarToFrame.js
+fitCalendarToFrame is another javascript which is used to resize all 
+layers of the calendar with even cell spacing into the selected text 
+frame.  If the work week is included, it will be given a 0.25" cell width.  
+
+caution: The adobe script engine fails to work on cells that are not 
+visible.  This can be quite a pain when trying to reduce the size of the 
+calendar.  Sometimes it works to run the script several times because as
+cells in the top are reduced, cells in the bottom become visible.
+
+When executed with a calendar table selected, it becomes the master.  All 
+of the layers of the calendar will be adjusted to the selected table.  If 
+no frame is selected, a dialog box is brought up and the user needs to 
+specify which calendar and frame will be the master.  Under the hood, 
+each calendar table has a label such as calendarDates1, calendarHolidays1, 
+and calendarText1.  The number is the id of the calendar.  So a page with 
+four calendars will have calendarDates1, calendarDates2, , calendarDates3, 
+and calendarDates4.  To figure out which calendar has which label, select 
+it and open up the "Scripts Labels" palette.  As an options, all may be 
+selected in which case every calendar in the document will be adjusted.  
+
+iii. realignCalendarTables.js
+realignCalendarTablse.js is another javascript which is used to align
+all of the calendar layers to a particular one.  For example, if un-even
+column spacing is desired one layer can be tweaked into place and this
+script would push the other layers into an exact super-position of the
+tweaked table.
+
+The rules for selecting the table are the same as for the 
+fitCalendarToFrame.js script.  
+
+F. Holidays
+-------------------------------------------------------
+Version 2 of the calendar wizard had the ability to automatically place 
+holidays defined by a formatted list from an active text frame; In version 
+3 the ability has been expanded to pull multiple lists from the current 
+text frame, a file anywhere on the computer, or from text files in a 
+pre-defined directory.  
+
+If two holidays are listed for the same date, they will both be printed in 
+the cell separated by a new line.  If the text of a holiday exactly 
+appears in two of more lists, only the first occurrence will be printed.  
+Note text of the holidays must be exact.  Any differences in 
+spelling, capitalization, or extra space will cause the script to consider
+them different and print both.
+
+i. Holiday List Format:
+The format of a holiday is either: mm-dd-yyyy:text or mm-dd:text
+
+Note, the script does not use leading 0's, so use 1-1 for January 1st
+rather than 01-01. The text could be anything.  For example:
+
+1-1:New Year's Day
+1-19-2009:Martin Luther King Jr.'s Birthday
+
+For holidays which occur on the same date every year, such as new year's 
+day or somebody's birthday, it's best to use the format "mm-dd".  When the 
+holiday changes from year to year, such as Easter, use "mm-dd-yyyy".  
+
+The longer the holiday list is, the longer it will take to generate
+a calendar regardless if the holidays occur in that month or not.
+
+ii. Selecting a Holiday List
+When selecting a holiday list there are four styles: A, B, C, and D.  
+Checking any of the styles will trigger the script to use that holiday 
+list.  The particular style is simply there to allow the user to 
+differentiate between different types of holidays (for example Christian 
+Holidays and birthdays) The first style in alphabetical order is the one 
+that will be used if multiple styles are selected.  
+
+iii. Loading from the Current Frame
+The list of holidays can be typed into a text frame. If the frame is selected
+and a style for the "From Current Frame" is selected, the script will load
+and print the holidays from that frame. 
+
+Note, when selected, the behavior of "Auto" for the page setting changes.  
+In this case a new document will be created so the date information is not 
+destroyed.  If you want to replace the holiday text with the calendar, set 
+Page to "Current Text Frame".  
+
+iv. Loading from a Custom File
+If selected, the script will bring up a dialog box in which one or more
+files may be selected.  They are expected to be simple text files (not
+MW Word documents) that adhere to the holiday list format described above.
+Notepad or some other simple text editor is a good tool to use for 
+generating the text files rather than a Word Processor like MS Word.  If you
+do use Word or OpenOffice, be sure to save the file as a simple text file (.txt)
+
+v. Loading from Pre-Defined Files
+In InDesign version above CS2, when the script runs, it will look for a 
+folder called "holidays" next to the script itself.  In CS1 and CS2, the 
+folder must be at "<InDesign Install Folder>/Presets/Scripts/calendarWizard". 
+On the calendarWizard interface, a set of checkboxes will be created for 
+every file that ends in ".holidays" inside that folder.  The files are 
+expected to conform to the holiday list specification.  
+
+======================================================= 
+VI. Behavior Rules
+======================================================= 
+
+======================================================= 
+VII. To Do
+======================================================= 
+Add a templating feature
+
+Add a dropdown for which style set to apply (when multiple
+calendars per page are used and different styles are
+desired on the different calendars.)
+
+Add the ability to add other units.
+
+======================================================= 
+VIII. Bugs
+======================================================= 
+In CS2, the upper right cell has a right border:As far as I can tell, this 
+is a bug in the javascript interpreter in CS an CS2.  I don't know how to 
+fix it.  
+
+======================================================= 
+IX. QA Plan
+======================================================= 
+
+======================================================= 
+X. History
+======================================================= 
+A. Version 1.0
+B. Version 2.0
+C. Version 3.0
+
+======================================================= 
+XI: Notes:
+======================================================= 
+
+Troubleshooting:
+  The script causes InDesign to Hang:
+     The script is very slow - especially in CS and CS2.  Give it plenty of time
+     to work and everything will start to work.
+
