@@ -1,8 +1,8 @@
 //DESCRIPTION:Text that you type here will appear in the tool tip for the script
-// Script name.jsx
+// name.jsx
 //
 // Modified XXXX-XX-XX
-// Your Name, Your Company
+// Craig Wann
 // Your web site URL
 //
 // List of things required for the script to run
