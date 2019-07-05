@@ -21,10 +21,10 @@ function Main() {
 		myDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.INCHES;
 		myDoc.guidePreferences.guidesShown = true;
 		myDoc.guidePreferences.guidesSnapto = true;		
-		myDoc.viewPreferences.rulerOrigin = RulerOrigin.SPREAD_ORIGIN;
+		myDoc.viewPreferences.rulerOrigin = RulerOrigin.PAGE_ORIGIN;
         app.smartGuidePreferences.enabled = true;
         app.textPreferences.showInvisibles;
-        myDoc.pasteboardPreferences.pasteboardMargins = ["7in","1in"];
+        myDoc.pasteboardPreferences.pasteboardMargins = ["8.5in","1in"];
 		alert("Finished!");
 	}
 	else {

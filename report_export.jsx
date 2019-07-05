@@ -62,7 +62,7 @@ function myExportAllStories(myExportFormat, myFolder){
         var myTextFrame = myDoc.pages[0].textFrames.add();
         myTextFrame.geometricBounds = [0,9,11,13];
         var myID = myTextFrame.id;
-        // Add the text to the frame
+        // Add header text to the frame
         myTextFrame.contents += "SKU" + "\t" +  "Page" + "\n";
 
 		for (var i = 0; i < docTag.length; i++) {                

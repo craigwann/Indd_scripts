@@ -1,0 +1,1 @@
+﻿//SampleXMLRuleSet.jsx//An InDesign JavaScript////A Sample XML Rule Set//![Sample XML rule set.]var myRuleSet = new Array (new SortByName,							new AddStaticText,							new LayoutElements,							new FormatElements							);//![Sample XML rule set.]
