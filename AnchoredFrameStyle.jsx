@@ -5,7 +5,7 @@
 // Craig Wann
 // Your web site URL
 //
-// requirements:
+/* requirements:*/
 
 Main();
 // If you want the script to be un-doable, comment out the line above, and remove the comment from the line below
